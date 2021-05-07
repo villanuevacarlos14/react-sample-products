@@ -5,6 +5,5 @@ namespace product.inventory.dto
         public int ProductInventoryId { get; set; }
         public int Quantity { get; set; }
         public ProductInventoryMovementType Type { get; set; }
-
     }
 }

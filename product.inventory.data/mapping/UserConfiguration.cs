@@ -14,7 +14,6 @@ namespace product.inventory.data.mapping
             builder.Property(x => x.UpdateDate);
             builder.Property(x => x.Username).IsRequired();
             builder.Property(x => x.Password).IsRequired();
-
         }
     }
 }
