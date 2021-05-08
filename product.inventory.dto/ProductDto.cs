@@ -5,5 +5,6 @@ namespace product.inventory.dto
         public string Name { get; set; }
         public string Brand { get; set; }
         public decimal Price { get; set; }
+        public ProductInventoryDto ProductInventory { get; set; }
     }
 }

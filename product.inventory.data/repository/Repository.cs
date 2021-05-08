@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace product.inventory.data.repository
 {
@@ -24,11 +27,45 @@ namespace product.inventory.data.repository
             }
         }
 
+        public async Task<TEntity> GetAsync(int id, params Expression<Func<TEntity, object>>[] includes)
+        {
+            try
+            {
+                var entity = await _context.Set<TEntity>().FindAsync(id).ConfigureAwait(false);
+                foreach (var item in includes)
+                {
+                    _context.Entry(entity).Reference(item).Load();
+                }
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
         public IQueryable<TEntity> GetAll()
         {
             try
             {
                 return _context.Set<TEntity>();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
+        public IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includes)
+        {
+            try
+            {
+                var query = _context.Set<TEntity>().AsQueryable();
+                foreach (var item in includes)
+                {
+                    query = query.Include(item);
+                }
+                return query;
             }
             catch (Exception ex)
             {

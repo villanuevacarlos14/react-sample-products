@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using product.inventory.data.models;
 using product.inventory.dto;
@@ -17,6 +18,8 @@ namespace product.inventory.service.mapping
             CreateMap<Product, ProductDto>();
             CreateMap<ProductInventory, ProductInventoryDto>();
             CreateMap<ProductInventoryLog, ProductInventoryLogDto>();
+
+            CreateMap<Func<ProductDto, bool>, Func<Product, bool>>();
         }
     }
 }

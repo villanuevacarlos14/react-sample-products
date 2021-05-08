@@ -7,7 +7,6 @@ namespace product.inventory.data.models
         public string Name { get; set; }
         public string Brand { get; set; }
         public decimal Price { get; set; }
-        public int ProductInventoryId { get; set; }
-        public ProductInventory ProductInventory { get; set; }
+        public virtual ProductInventory ProductInventory { get; set; }
     }
 }

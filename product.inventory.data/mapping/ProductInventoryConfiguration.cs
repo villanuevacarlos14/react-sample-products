@@ -17,8 +17,7 @@ namespace product.inventory.data.mapping
 
             builder
                 .HasOne<Product>(x => x.Product)
-                .WithOne(x => x.ProductInventory)
-                .HasForeignKey<Product>(x => x.ProductInventoryId);
+                .WithOne(x => x.ProductInventory);
         }
     }
 }
